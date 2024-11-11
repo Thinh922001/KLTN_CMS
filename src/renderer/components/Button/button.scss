@@ -1,0 +1,97 @@
+// src/components/Button.scss
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &.loading {
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &.primary {
+    background-color: #ffb700;
+    color: #fff;
+
+    &:hover {
+      background-color: #cc9406;
+    }
+  }
+
+  &.secondary {
+    background-color: #2ecc71;
+    color: #fff;
+
+    &:hover {
+      background-color: #27ae60;
+    }
+  }
+
+  &.danger {
+    background-color: #e74c3c;
+    color: #fff;
+
+    &:hover {
+      background-color: #c0392b;
+    }
+  }
+
+  &.small {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+
+  &.medium {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  &.large {
+    padding: 12px 24px;
+    font-size: 18px;
+  }
+
+  .btn-icon {
+    display: flex;
+    margin-right: 8px;
+
+    &.right {
+      margin-left: 8px;
+      margin-right: 0;
+    }
+  }
+
+  .loader {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

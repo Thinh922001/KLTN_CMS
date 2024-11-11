@@ -25,6 +25,25 @@ class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 
+// Listener cho các sự kiện điều khiển cửa sổ
+ipcMain.on('window-minimize', () => {
+  if (mainWindow) mainWindow.minimize();
+});
+
+ipcMain.on('window-maximize', () => {
+  if (mainWindow) {
+    if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize();
+    } else {
+      mainWindow.maximize();
+    }
+  }
+});
+
+ipcMain.on('window-close', () => {
+  if (mainWindow) mainWindow.close();
+});
+
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
@@ -74,10 +93,13 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
     icon: getAssetPath('icon.png'),
+    frame: false,
     webPreferences: {
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
+      nodeIntegration: false, // Đảm bảo tính bảo mật
+      contextIsolation: true, // Bật contextIsolation để sử dụng contextBridge
     },
   });
 
@@ -115,6 +137,14 @@ const createWindow = async () => {
 /**
  * Add event listeners...
  */
+
+app.on('ready', () => {
+  ipcMain.handle('window-isMaximized', () => {
+    return mainWindow ? mainWindow.isMaximized() : false;
+  });
+
+  createWindow();
+});
 
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even

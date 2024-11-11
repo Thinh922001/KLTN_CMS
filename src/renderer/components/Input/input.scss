@@ -1,0 +1,65 @@
+// src/components/Input.scss
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px; // sử dụng px cho khoảng cách
+}
+
+.input-label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &.has-icon {
+    .input-field {
+      padding-left: 32px; // padding để dành chỗ cho icon bên trái
+    }
+    &.right .input-field {
+      padding-left: 8px;
+      padding-right: 32px; // padding để dành chỗ cho icon bên phải
+    }
+  }
+}
+
+.input-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 20px;
+  padding: 0 8px; // padding giữa icon và input
+}
+
+.input-wrapper.left .input-icon {
+  left: 8px;
+}
+
+.input-wrapper.right .input-icon {
+  right: 8px;
+}
+
+.input-field {
+  height: 35px;
+  padding: 8px;
+  font-size: 1.8rem;
+  border: 1px solid #d2d1d6;
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: #3498db;
+  }
+
+  &:disabled {
+    background-color: #f5f5f5;
+  }
+}

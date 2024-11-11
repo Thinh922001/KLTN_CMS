@@ -1,0 +1,24 @@
+@import '../../styles/variable.scss';
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: calc(100vh - $title-height);
+
+  &__wrapper {
+    width: 35%;
+  }
+
+  &__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.4rem;
+    margin-bottom: 50px;
+  }
+
+  &__form-group + &__form-group {
+    margin-top: 10px;
+  }
+}
